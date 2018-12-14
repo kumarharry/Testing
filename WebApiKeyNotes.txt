@@ -1,0 +1,75 @@
+========================================================================================================================================================
+Custom web API method name
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Here are the some rules which Web API follows to mapping HTTP verbs with method name
+
+1) If a method have prefix of GET, PUT, POST and DELETE(case insensitive) that method is a valid HTTP verb(Valid API method for respective prefix).
+Like for get GETEmployees(), getData(), GetData() are equal to Get(), it is same for PUT, POST and DELETE.
+
+2) To use a custom name we need to put respective attribute above the method name. Like we want to use a method LoadEmployeeData() as Get() method
+then we can declare that like.
+
+[HttpGet]
+public string LoadEmployeeData()
+{
+   return "I am string data";
+}
+
+Note: LoadEmployeeData() is mapped with get attribute and will work for the call of get API call. we have same kind of attributes for respective methods.
+========================================================================================================================================================
+
+
+========================================================================================================================================================
+FromBody and FromUri
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+1) For simple things like int,string,boolean API router looks in the URI and for complex like class, object etc. it looks in the BODY
+
+2) if the parameter is simple then we either can pass it as route value or as query string. Like
+
+public string get(id int)
+{
+}
+
+we can pass id value either as route value of as query string.
+http://localhost:63062/api/values/8     //passing 8 as route value
+http://localhost:63062/api/values?id=8 // here passing 8 as query string value
+
+3) IF we are using a complex variable as parameter for API method then we either can declare it with [FromBody] attribute or can use without it.
+API router will look for the it in the body automatically. Like
+
+public void put(int id, [FromBody] clsEmployee employee)
+{
+}
+is same as 
+public void put(int id, clsEmployee employee)
+{
+}
+for this method router will look in the URI for "id" and will look in the body for "employee" parameter.
+
+3) Force API to read complex data from URI and simple from BODY
+
+public string put([FromBody]int id,[FromUri] clsEmployee emp)
+{
+  return "";
+}
+
+In this method we are forcing API to read 'id' from the body and 'emp' data from the URI. Suppose clsEmployee have 3 properties called Id,Name and Gender
+then the url will be like
+http://localhost:63062/api/values?Name=ABC&Gender=Male
+and will pass 123 value for id in the body.
+
+Note:-While passing values for the clsEmployee under URI our property name and QueryString key must be same.
+========================================================================================================================================================
+
+========================================================================================================================================================
+Tips while calling an API method using Ajax.
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+1) Comparison with call made by Fiddler or Postman.
+We use "accept" attribute as header which tells the API that which type of data we want to accept from API as response, we use this keyword from
+fiddler or postman as 
+accept: 'JSON'(or XML,Text etc).
+We do same thing with the keyword "dataType" in our Ajax call.
+
+Note: 'accept' tells which kind of response we want from API as data it can be JSON or XML etc. and "content-Type" tells to API that which kind of data
+we are passing to server. We use "content-Type only when we want to pass data to server as input
+========================================================================================================================================================
