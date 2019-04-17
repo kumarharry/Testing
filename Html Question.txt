@@ -1,0 +1,23 @@
+1) Paragraph Break: We use <p></p> tag for the paragraph, when we use this tag that creates a new line(break a line) to show next paragraph. The paragraph tag show new line only if there is any content between that tag, empty paragraph will not break lines.
+
+2) Line Break: We use <br> tag for line break, whenever we want to break lines or need vertical space then we use <br> tag, this tag is not a paired tag.
+
+3) Style: We use <style></style> to implement styling on HTML elements, suppose we want to apply color red for all the paragraph elements then we can use style tag as
+
+<style>
+p{color:red;}
+</style>
+
+4) Link Tag: The HTML <link> tag is used for defining a link to an external resource. It is placed in in the <head> section of the HTML document. The <link> tag is commonly used for linking to an external style sheet. We can use this tag to point an external CSS like
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+5) In-Line CSS: In-Line CSS is used to apply CSS on a specific element directly, Like we can apply CSS to a particular div in such way 
+  <div style='color:red;font-size:50px;'>Some text</div>
+  
+6)Internal CSS: We can handle style of all the elements of a particular html page using internal CSS. To implement internal CSS we use <style></style> tag on page. Like to apply color red on all the paragraph elements of a page we can use internal CSS in such way
+<style>
+p{color:red;}
+</style>
+
+7) External CSS: We use external CSS for code reusability, To implement external CSS we use <link> tag to refer external CSS file like that 
+<link rel="stylesheet" type="text/css" href="mystyle.css">. The external CSS helps us to save line of code, provide re-usable code and its a good as per coding purpose.
